@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public abstract class Erathostene {
 
     /**
@@ -52,11 +54,21 @@ public abstract class Erathostene {
     public static void multithread(boolean[] primeNumbers) {
        removePairMultiples(primeNumbers);
 
+        ArrayList<Thread> threads = new ArrayList<>();
         double maxRange = Math.sqrt(primeNumbers.length);
         for (int position = 3; position < maxRange; position += 2) {
             if (primeNumbers[position]) {
                 Crible crible = new Crible(primeNumbers, position);
                 crible.start();
+                threads.add(crible);
+            }
+        }
+
+        while (threads.size() > 0) {
+            for (int position = 0; position < threads.size(); position ++) {
+                if (!threads.get(position).isAlive()) {
+                    threads.remove(position);
+                }
             }
         }
 
