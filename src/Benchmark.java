@@ -13,10 +13,19 @@ public abstract class Benchmark {
                 Erathostene.monothread(primeNumbers);
             }
 
+            // showPrimeNumbers(primeNumbers);
             totalDuration += System.currentTimeMillis() - duration;
         }
 
         System.out.printf("%f ms\n", totalDuration / tests);
+    }
+
+    public static void showPrimeNumbers(boolean[] primeNumbers) {
+        for (int number = 0; number < primeNumbers.length; number ++) {
+            if (primeNumbers[number]) {
+                System.out.println(number);
+            }
+        }
     }
 
     public static void erathosteneMonoThread(int tests, int maxRange) {

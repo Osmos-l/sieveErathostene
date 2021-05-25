@@ -8,7 +8,7 @@ public abstract class Erathostene {
     public static boolean[] generateDefaultArray(int size) {
         boolean[] primeNumbers = new boolean[size];
 
-        for (int position = 0; position < size; position ++) {
+        for (int position = 2; position < size; position ++) {
             primeNumbers[position] = true;
         }
 
@@ -21,9 +21,10 @@ public abstract class Erathostene {
         }
     }
 
-    private static void removeDefaultMultiples(boolean[] primeNumbers) {
-        primeNumbers[0] = false;
-        primeNumbers[1] = false;
+    private static void removePairMultiples(boolean[] primeNumbers) {
+        for (int position = 4; position < primeNumbers.length; position += 2) {
+            primeNumbers[position] = false;
+        }
     }
 
     /**
@@ -32,16 +33,15 @@ public abstract class Erathostene {
      * @param primeNumbers Array boolean[] of prime numbers
      */
     public static void monothread(boolean[] primeNumbers) {
-        removeDefaultMultiples(primeNumbers);
+        removePairMultiples(primeNumbers);
 
         double maxRange = Math.sqrt(primeNumbers.length);
-        for (int position = 2; position < maxRange; position ++) {
+        for (int position = 3; position < maxRange; position += 2) {
             if (primeNumbers[position]) {
                 removeMultiple(primeNumbers, position);
             }
         }
 
-        // TODO: Return primeNumbers
     }
 
     /**
@@ -50,20 +50,15 @@ public abstract class Erathostene {
      * @param primeNumbers Array boolean[] of prime numbers
      */
     public static void multithread(boolean[] primeNumbers) {
-        // TODO: exception if size < 3
+       removePairMultiples(primeNumbers);
 
-        removeDefaultMultiples(primeNumbers);
-
-        Crible crible = new Crible(primeNumbers, 2, Math.sqrt(primeNumbers.length));
-        crible.run();
-
-        try {
-            crible.join();
-        } catch (InterruptedException e) {
-            System.out.println(e);
+        double maxRange = Math.sqrt(primeNumbers.length);
+        for (int position = 3; position < maxRange; position += 2) {
+            if (primeNumbers[position]) {
+                Crible crible = new Crible(primeNumbers, position);
+                crible.start();
+            }
         }
 
-
-        // TODO: Return primeNumbers
     }
 }

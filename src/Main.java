@@ -3,7 +3,7 @@ public class Main {
     public static void main(String[] args) {
 
         int tests = 1;
-        int maxRange = 1000000; // Integer.MAX_VALUE -2;
+        int maxRange = 2000000000;
 
         System.out.println("-----------------------------------");
         System.out.println("| Crible of erathostene benchmark |");
@@ -16,5 +16,6 @@ public class Main {
         Benchmark.erathosteneMonoThread(tests, maxRange);
         System.out.println("\nMultithread ->");
         Benchmark.erathosteneMultiThread(tests, maxRange);
+
     }
 }
