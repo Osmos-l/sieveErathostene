@@ -18,7 +18,7 @@ public abstract class Erathostene {
     }
 
     public static void removeMultiple(boolean[] primeNumbers, int position) {
-        for (int j = position * position; j < primeNumbers.length; j += position) {
+        for (int j = position * position; j > 0 && j < primeNumbers.length; j += position) {
             primeNumbers[j] = false;
         }
     }

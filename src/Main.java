@@ -3,7 +3,7 @@ public class Main {
     public static void main(String[] args) {
 
         int tests = 1;
-        int maxRange = 2000000000;
+        int maxRange = Integer.MAX_VALUE -2;
 
         System.out.println("-----------------------------------");
         System.out.println("| Crible of erathostene benchmark |");
