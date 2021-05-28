@@ -31,7 +31,7 @@ public abstract class Erathostene {
     public static void monothread(boolean[] primeNumbers) {
         removeMultiple(primeNumbers, 2);
 
-        double maxRange = Math.sqrt(primeNumbers.length);
+        int maxRange = (int)Math.sqrt(primeNumbers.length);
         for (int position = 3; position < maxRange; position += 2) {
             if (primeNumbers[position]) {
                 removeMultiple(primeNumbers, position);
@@ -46,10 +46,13 @@ public abstract class Erathostene {
      * @param primeNumbers Array boolean[] of prime numbers
      */
     public static void multithread(boolean[] primeNumbers) {
-        removeMultiple(primeNumbers, 2);
-
         ArrayList<Thread> threads = new ArrayList<>();
-        double maxRange = Math.sqrt(primeNumbers.length);
+        Crible criblePair = new Crible(primeNumbers, 2);
+        criblePair.start();
+
+        threads.add(criblePair);
+
+        int maxRange = (int)Math.sqrt(primeNumbers.length);
         for (int position = 3; position < maxRange; position += 2) {
             if (primeNumbers[position]) {
                 Crible crible = new Crible(primeNumbers, position);

@@ -7,15 +7,15 @@ public class Main {
 
         System.out.println("-----------------------------------");
         System.out.println("| Crible of erathostene benchmark |");
-        System.out.println("-----------------------------------");
+        System.out.println("------ -----------------------------");
 
         System.out.printf("Number of tests: %d\n", tests);
         System.out.printf("Max range of prime numbers: %d\n\n", maxRange);
 
         System.out.println("Monothread ->");
-        Benchmark.erathosteneMonoThread(tests, maxRange);
+        Benchmark.erathosteneMonoThread(tests, maxRange, false);
         System.out.println("\nMultithread ->");
-        Benchmark.erathosteneMultiThread(tests, maxRange);
+        Benchmark.erathosteneMultiThread(tests, maxRange, false);
 
     }
 }

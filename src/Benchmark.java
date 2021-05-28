@@ -1,6 +1,6 @@
 public abstract class Benchmark {
 
-    private static void erathosteneBenchmark(int tests, int maxRange, boolean isMultithread) {
+    private static void erathosteneBenchmark(int tests, int maxRange, boolean isMultithread, boolean print) {
         double totalDuration = 0;
 
         for (int test = 0; test < tests; test ++) {
@@ -13,8 +13,12 @@ public abstract class Benchmark {
                 Erathostene.monothread(primeNumbers);
             }
 
-            // showPrimeNumbers(primeNumbers);
             totalDuration += System.currentTimeMillis() - duration;
+
+            if (print) {
+                showPrimeNumbers(primeNumbers);
+            }
+
         }
 
         System.out.printf("%f ms\n", totalDuration / tests);
@@ -28,11 +32,11 @@ public abstract class Benchmark {
         }
     }
 
-    public static void erathosteneMonoThread(int tests, int maxRange) {
-        erathosteneBenchmark(tests, maxRange, false);
+    public static void erathosteneMonoThread(int tests, int maxRange, boolean print) {
+        erathosteneBenchmark(tests, maxRange, false, print);
     }
 
-    public static void erathosteneMultiThread(int tests, int maxRange) {
-        erathosteneBenchmark(tests, maxRange, true);
+    public static void erathosteneMultiThread(int tests, int maxRange, boolean print) {
+        erathosteneBenchmark(tests, maxRange, true, print);
     }
 }
