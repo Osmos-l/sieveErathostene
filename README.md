@@ -4,6 +4,6 @@
  java.Integer.MAX_VALUE -2 (2.147.483.645)
 
 # Benchmark
-Benchmark with MacBook Pro M1 2020 4Go RAM Allocated, 2 to 2147483645:
-* Monothread -> 14.3ms
-* Multithread -> 9.3ms
+Benchmark with MacBook Pro M1 2020 4Go RAM Allocated, 2 to 2.147.483.645:
+* Monothread -> 14.3s
+* Multithread -> 9.3s
