@@ -1,5 +1,7 @@
 package models;
 
+import static utils.ErathosteneUtil.removeMultiple;
+
 /**
  *
  */
@@ -23,8 +25,6 @@ public class Crible extends Thread {
 
     @Override
     public void run() {
-        for (int j = multiple * multiple; j > 0 && j < primeNumbers.length; j += multiple) {
-            primeNumbers[j] = false;
-        }
+        removeMultiple(this.primeNumbers, this.multiple);
     }
 }

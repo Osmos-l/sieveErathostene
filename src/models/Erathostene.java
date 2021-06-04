@@ -1,6 +1,7 @@
 package models;
 
 import interfaces.iErathostene;
+import static utils.ErathosteneUtil.removeMultiple;
 
 import java.util.ArrayList;
 
@@ -85,12 +86,6 @@ public class Erathostene implements iErathostene {
                 e.printStackTrace();
             }
         });
-    }
-
-    private void removeMultiple(boolean[] primeNumbers, int position) {
-        for (int j = position * position; j > 0 && j < primeNumbers.length; j += position) {
-            primeNumbers[j] = false;
-        }
     }
 
     @Override
