@@ -1,18 +1,24 @@
 package models;
 
-/**
- *
- */
-public abstract class Benchmark {
+import interfaces.iBenchmark;
+
+public class ErathosteneBenchmark implements iBenchmark {
+
+    int tests;
+    int maxRange;
 
     /**
-     * Benchmark of erathostene crible
-     * @param tests The number of test
+     * Initial state of benchmark
+     * @param tests The number of test you want to execute
      * @param maxRange The max range of prime numbers we were searching for, [2 .. maxRange]
-     * @param isMultithread true for multithread execution, false in other case
-     * @param print Display prime numbers at the end
      */
-    public static void erathostene(int tests, int maxRange, boolean isMultithread, boolean print) {
+    public ErathosteneBenchmark(int tests, int maxRange) {
+        this.tests = tests;
+        this.maxRange = maxRange;
+    }
+
+    @Override
+    public void run(boolean isMultithread, boolean print) {
         double totalDuration = 0;
 
         for (int test = 0; test < tests; test ++) {

@@ -1,4 +1,4 @@
-import models.Benchmark;
+import models.ErathosteneBenchmark;
 
 public class Main {
 
@@ -6,22 +6,23 @@ public class Main {
         /*
          TODO:
          - JUnit 5 test
-         - Make interfaces
          */
         int tests = 1;
         int maxRange = Integer.MAX_VALUE -2;
 
+        ErathosteneBenchmark benchmark = new ErathosteneBenchmark(tests, maxRange);
+
         System.out.println("-----------------------------------");
-        System.out.println("| models.Crible of erathostene benchmark |");
-        System.out.println("------ -----------------------------");
+        System.out.println("| Crible of erathostene benchmark |");
+        System.out.println("------------------------------------");
 
         System.out.printf("Number of tests: %d\n", tests);
         System.out.printf("Max range of prime numbers: %d\n\n", maxRange);
 
         System.out.println("Monothread ->");
-        Benchmark.erathostene(tests, maxRange, false, false);
+        benchmark.run(false, false);
         System.out.println("\nMultithread ->");
-        Benchmark.erathostene(tests, maxRange, true, false);
+        benchmark.run( true, false);
 
     }
 }

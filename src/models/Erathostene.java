@@ -1,5 +1,7 @@
 package models;
 
+import interfaces.iErathostene;
+
 import java.util.ArrayList;
 
 /**
@@ -12,14 +14,16 @@ import java.util.ArrayList;
  * - 2 is the only pair prime numbers, 4; 6; 8; 10. ... are not so we dont need to set them on true too
  * In the treatment we do this:
  * for each value on array that is true we remove all multiple (we set them on false),
- * exemple for 3 we remove 9; 12; ....
+ * example for 3 we remove 9; 12; ....
  * At the end the values sets on true in the array are prime numbers
  */
-public class Erathostene {
+public class Erathostene implements iErathostene {
 
     boolean[] primeNumbers;
 
     double sqrtArrayLength;
+
+    boolean isSorted;
 
     /**
      * Initial state of erathostene
@@ -32,20 +36,6 @@ public class Erathostene {
         primeNumbers = generateDefaultArray(maxRange);
 
         sqrtArrayLength = Math.sqrt(primeNumbers.length);
-    }
-
-    /**
-     * Find all prime numbers between 2 .. maxRange in mono or multithread
-     * @param inMultithread Execution in multithread ?
-     * @return boolean[] with all prime numbers on true
-     */
-    public boolean[] crible(boolean inMultithread) {
-        if (inMultithread) {
-            multithread();
-        } else {
-            monothread();
-        }
-        return primeNumbers;
     }
 
     private boolean[] generateDefaultArray(int size) {
@@ -87,14 +77,14 @@ public class Erathostene {
                 threads.add(crible);
             }
         }
-
-        for (Thread thread : threads) {
+        
+        threads.forEach(thread -> {
             try {
                 thread.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
+        });
     }
 
     private void removeMultiple(boolean[] primeNumbers, int position) {
@@ -103,15 +93,32 @@ public class Erathostene {
         }
     }
 
-    /**
-     * Display all prime numbers between 2 .. maxRange
-     */
+    @Override
     public void displayPrimeNumbers() {
-        for (int number = 0; number < primeNumbers.length; number ++) {
+        if (!isSorted) {
+            multithread();
+            isSorted = true;
+        }
+
+        for (int number = 3; number < primeNumbers.length; number =+ 2) {
             if (primeNumbers[number]) {
                 System.out.println(number);
             }
         }
     }
 
+    @Override
+    public boolean[] crible(boolean multithreading) {
+
+        if (!isSorted) {
+            if (multithreading) {
+                multithread();
+            } else {
+                monothread();
+            }
+            isSorted = true;
+        }
+
+        return primeNumbers;
+    }
 }
