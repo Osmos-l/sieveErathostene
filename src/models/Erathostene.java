@@ -31,7 +31,7 @@ public class Erathostene implements iErathostene {
      */
     public Erathostene(int maxRange) {
         if (maxRange < 3) {
-            // TODO: Throw error
+            throw new IllegalArgumentException("max range cannot be < 3");
         }
         primeNumbers = generateDefaultArray(maxRange);
 
@@ -46,7 +46,7 @@ public class Erathostene implements iErathostene {
 //      primeNumbers[1] = false;
         primeNumbers[2] = true;
 
-        // 2 is the only pair prime numbers so we dont need to set them on true
+        // 2 is the only pair prime numbers so we dont need to set others pair on true
 //        for (int position = 4; position < size; position += 2) {
 //            primeNumbers[position] = false;
 //        }

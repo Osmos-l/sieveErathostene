@@ -18,14 +18,14 @@ public class ErathosteneBenchmark implements iBenchmark {
     }
 
     @Override
-    public void run(boolean isMultithread, boolean print) {
+    public void run(boolean inMultithread, boolean print) {
         double totalDuration = 0;
 
         for (int test = 0; test < tests; test ++) {
             Erathostene erathostene = new Erathostene(maxRange);
 
             double duration = System.currentTimeMillis();
-            erathostene.crible(isMultithread);
+            erathostene.crible(inMultithread);
             totalDuration += System.currentTimeMillis() - duration;
 
             if (print) {
