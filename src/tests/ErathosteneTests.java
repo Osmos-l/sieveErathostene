@@ -32,7 +32,6 @@ public class ErathosteneTests {
             int nbPrimeNumbers = 0;
             for (int multiple = 0; multiple < primeNumbers.length; multiple ++) {
                 if (primeNumbers[multiple]) {
-                    // System.out.println(multiple);
                      nbPrimeNumbers++;
                 }
             }

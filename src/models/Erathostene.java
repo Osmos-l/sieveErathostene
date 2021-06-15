@@ -3,7 +3,6 @@ package models;
 import interfaces.iErathostene;
 import static utils.ErathosteneUtil.removeMultiple;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -81,7 +80,7 @@ public class Erathostene implements iErathostene {
         // wait until all threads will be finished
         executorService.shutdown();
         try {
-            executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.MILLISECONDS);
+            executorService.awaitTermination(50, TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
