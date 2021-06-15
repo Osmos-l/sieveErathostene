@@ -5,7 +5,7 @@ import static utils.ErathosteneUtil.removeMultiple;
 /**
  *
  */
-public class Crible extends Thread {
+public class Crible implements Runnable {
 
     private boolean[] primeNumbers;
     private int multiple;
@@ -16,10 +16,8 @@ public class Crible extends Thread {
      * @param multiple The initial multiple we keep
      */
     public Crible(boolean[] primeNumbers, int multiple) {
-        // TODO: Throw exeception on primeNumbers array if isn't correctly init
         this.primeNumbers = primeNumbers;
 
-        // TODO: Throw exeception if position < 0
         this.multiple = multiple;
     }
 

@@ -30,9 +30,10 @@ public class ErathosteneTests {
             boolean[] primeNumbers = erathostene.crible(true);
 
             int nbPrimeNumbers = 0;
-            for (boolean primeNumber : primeNumbers) {
-                if (primeNumber) {
-                    nbPrimeNumbers++;
+            for (int multiple = 0; multiple < primeNumbers.length; multiple ++) {
+                if (primeNumbers[multiple]) {
+                    // System.out.println(multiple);
+                     nbPrimeNumbers++;
                 }
             }
 

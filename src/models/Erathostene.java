@@ -4,6 +4,8 @@ import interfaces.iErathostene;
 import static utils.ErathosteneUtil.removeMultiple;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.*;
 
 /**
  * Erathostene class that allows you to find all prime numbers between 0 to a range you give
@@ -68,24 +70,21 @@ public class Erathostene implements iErathostene {
     }
 
     private void multithread() {
-        ArrayList<Thread> threads = new ArrayList<>();
+        ExecutorService executorService = Executors.newCachedThreadPool();
 
         for (int position = 3; position < sqrtArrayLength; position += 2) {
             if (primeNumbers[position]) {
-                Crible crible = new Crible(primeNumbers, position);
-                crible.start();
-
-                threads.add(crible);
+                executorService.submit(new Crible(primeNumbers, position));
             }
         }
-        
-        threads.forEach(thread -> {
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
+
+        // wait until all threads will be finished
+        executorService.shutdown();
+        try {
+            executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
