@@ -5,5 +5,5 @@
 
 # Benchmark
 Benchmark with MacBook Pro M1 2020 4Go RAM Allocated, 2 to 2.147.483.645:
-* Monothread -> 14.3s
-* Multithread -> 9.3s
+* Monothread -> 13,7s
+* Multithread -> 8s
