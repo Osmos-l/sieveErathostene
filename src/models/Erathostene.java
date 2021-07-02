@@ -93,7 +93,7 @@ public class Erathostene implements iErathostene {
             isSorted = true;
         }
 
-        for (int number = 3; number < primeNumbers.length; number =+ 2) {
+        for (int number = 3; number < primeNumbers.length; number += 2) {
             if (primeNumbers[number]) {
                 System.out.println(number);
             }
