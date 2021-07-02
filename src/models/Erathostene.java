@@ -92,7 +92,8 @@ public class Erathostene implements iErathostene {
             multithread();
             isSorted = true;
         }
-
+        
+        System.out.println("2");
         for (int number = 3; number < primeNumbers.length; number += 2) {
             if (primeNumbers[number]) {
                 System.out.println(number);
